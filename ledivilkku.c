@@ -33,7 +33,7 @@ int main(void)
 	led_init();
 
 	uint8_t brightness = 0;
-	uint8_t going_up = 1;
+	uint8_t direction = 1;
 	// this loop increases/decreases led brightness
 	// every led should light up
 	while (1)
@@ -60,17 +60,17 @@ int main(void)
 			tick(); // debounce release
 		}
 
-		l2led(); // after you call this, leds will set according to l-matrix
+		l2led(); // after you call this, leds will be set according to l-array
 		for (uint8_t i = 0; i < 10; i++) // wait for a while
 			tick();
 
 		if(brightness == 15){
-			going_up = -1;
+			direction = -1;
 		}
 		if(brightness == 0){
-			going_up = 1;
+			direction = 1;
 		}
-		brightness += going_up;
+		brightness += direction;
 	}
 }
 
